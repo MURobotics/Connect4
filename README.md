@@ -8,3 +8,5 @@ docker build -t connect4 .
 //Running
 
 docker run -it connect4
+
+test
