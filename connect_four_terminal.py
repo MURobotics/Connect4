@@ -1,5 +1,3 @@
-#dlfjaslkdfjlasjdfl
-
 import numpy as np
 #import pygame
 import sys
@@ -75,13 +73,15 @@ class Board:
         self.array [row-1][column] = player  
       else:
         print(f"Column {column} is full! Can't insert piece here")
+        column = int(input("select a valid column"))
+        self.move(column,player)
       self.print_board()
 
 def main():
   board1=Board()
   board1.print_board()
   player1=True
-  Player2=False
+  player2=False
   gameover=False
   numberofmoves=0
   while gameover==False:
@@ -89,43 +89,43 @@ def main():
       print("place a piece")
       column=int(input("select column"))
       if int (column)>6 or int (column)<0:
-        print("pick a correct column")
+        column = int(input("pick a correct column"))
       board1.move(column,1)
       player1=False
       player2=True
-    if(numberofmoves>4):
-      winner=board1.win_condition()
-      print (str(winner))
-      if winner==1:
-        gameover=True
-        print("player one wins")
-      elif winner==2:
-        gameover=True
-        print("player two wins")
-      elif winner==0:
-        continue
-    numberofmoves=numberofmoves+1
+      numberofmoves+=1
+      if(numberofmoves>4):
+        winner=board1.win_condition()
+        print (str(winner))
+        if winner==1:
+          gameover=True
+          print("player one wins")
+        elif winner==2:
+          gameover=True
+          print("player two wins")
+        elif winner==0:
+          continue
     if player2==True:
       print("place a piece")
       column=int(input("select column"))
       if int(column)>6 or int(column)<0:
-        print("pick a correct column")
+        column=int(input("pick a correct column"))
       board1.move(column,2)
       player1=True
       player2=False
-    numberofmoves=numberofmoves+1
-    print("number of moves = " + (str(numberofmoves)))
-    if(numberofmoves>4):
-      winner=board1.win_condition()
-      print (str(winner))
-      if winner==1:
-        gameover=True
-        print("player one wins")
-      elif winner==2:
-        gameover=True
-        print("player two wins")
-      elif winner==0:
-        continue
+      numberofmoves=numberofmoves+1
+      print("number of moves = " + (str(numberofmoves)))
+      if(numberofmoves>4):
+        winner=board1.win_condition()
+        print (str(winner))
+        if winner==1:
+          gameover=True
+          print("player one wins")
+        elif winner==2:
+          gameover=True
+          print("player two wins")
+        elif winner==0:
+          continue
     
 
 main()
